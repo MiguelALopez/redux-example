@@ -1,6 +1,5 @@
 import { Component, OnInit } from '@angular/core';
 import { Observable } from 'rxjs';
-import { map } from 'rxjs/operators';
 import { ITodo } from '../todo';
 import { Store, select } from '@ngrx/store';
 import { IAppState, todosSelector } from '../todo.reducer';
@@ -16,7 +15,7 @@ export class TodoOverviewComponent implements OnInit {
   todos: Observable<ITodo[]>;
   lastUpdate: Observable<Date>;
 
-  constructor(private store: Store<{todo: IAppState}>) {
+  constructor(private store: Store<{todoReducer: IAppState}>) {
    }
 
   ngOnInit() {

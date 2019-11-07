@@ -1,5 +1,6 @@
 import { BrowserModule } from '@angular/platform-browser';
 import { NgModule } from '@angular/core';
+import { FormsModule } from "@angular/forms";
 
 import { AppRoutingModule } from './app-routing.module';
 import { AppComponent } from './app.component';
@@ -9,6 +10,7 @@ import { StoreModule } from '@ngrx/store';
 import { counterReducer } from './counter.reducer';
 import { todoReducer } from "./todo.reducer";
 import { TodoOverviewComponent } from './todo-overview/todo-overview.component';
+import { TodoListComponent } from './todo-list/todo-list.component';
 
 
 
@@ -16,12 +18,14 @@ import { TodoOverviewComponent } from './todo-overview/todo-overview.component';
   declarations: [
     AppComponent,
     MyCounterComponent,
-    TodoOverviewComponent
+    TodoOverviewComponent,
+    TodoListComponent
   ],
   imports: [
     BrowserModule,
     AppRoutingModule,
-    StoreModule.forRoot({ countReducer: counterReducer,  todoReducer: todoReducer} )
+    StoreModule.forRoot({ countReducer: counterReducer,  todoReducer: todoReducer} ),
+    FormsModule
   ],
   providers: [],
   bootstrap: [AppComponent]
