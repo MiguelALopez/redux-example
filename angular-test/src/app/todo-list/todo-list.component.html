@@ -1,0 +1,50 @@
+<h6>Create Todo:</h6>
+<form (ngSubmit)="onSubmit()" #todoForm="ngForm">
+    <div class="form-row">
+        <div class="col-auto">
+            <input type="text" class="form-control" placeholder="Description" id="description"
+                [(ngModel)]="model.description" name="description" #description="ngModel">
+        </div>
+
+        <div class="col-auto">
+            <input type="text" class="form-control" placeholder="Responsible" id="responsible"
+                [(ngModel)]="model.responsible" name="responsible" #responsible="ngModel">
+        </div>
+
+        <div class="col-auto">
+            <select class="form-control" id="priority" [(ngModel)]="model.priority" name="priority"
+                #priority="ngModel">
+                <option value="low">Low</option>
+                <option value="medium">Medium</option>
+                <option value="hight">Hight</option>
+            </select>
+        </div>
+        <div class="col-auto">
+            <button class="btn btn-primary" type="submit">Create</button>
+        </div>
+    </div>
+</form>
+<br>
+<h6>Todo List:</h6>
+<div *ngIf="(todos | async)?.length != 0">
+    <table class="table">
+        <thead class="thead-inverse">
+            <tr>
+                <th>#</th>
+                <th>Todo Description</th>
+                <th>Responsible</th>
+                <th>Priority</th>
+                <th></th>
+            </tr>
+        </thead>
+        <tbody>
+            <tr *ngFor="let todo of todos | async">
+                <td (click)="toggleTodo(todo)" [class.completed]="todo.isCompleted"><span>{{todo.id}}</span></td>
+                <td (click)="toggleTodo(todo)" [class.completed]="todo.isCompleted"><span>{{todo.description}}</span></td>
+                <td (click)="toggleTodo(todo)" [class.completed]="todo.isCompleted"><span>{{todo.responsible}}</span></td>
+                <td (click)="toggleTodo(todo)" [class.completed]="todo.isCompleted"><span>{{todo.priority}}</span></td>
+                <td><button class="btn btn-primary" (click)="removeTodo(todo)">Delete</button></td>
+            </tr>
+        </tbody>
+    </table>
+</div>
