@@ -1,9 +1,10 @@
 import { Component, OnInit } from '@angular/core';
 import { Store, select } from '@ngrx/store';
-import { IAppState } from '../todo.reducer';
+import { ITodoState } from '../todo.reducer';
 import { Observable } from 'rxjs';
 import { ITodo } from '../todo';
 import { addTodo, toggleTodo, removeAllTodos } from '../counter.actions';
+import { todos, lastUpdate } from '../todo.selector';
 
 @Component({
   selector: 'app-todo-list',
@@ -23,11 +24,11 @@ export class TodoListComponent implements OnInit {
     isCompleted: false
   };
 
-  constructor(private store: Store<{todoReducer: IAppState}>) { }
+  constructor(private store: Store<{todoState: ITodoState}>) { }
 
   ngOnInit() {
-    this.todos = this.store.pipe(select(state => state['todoReducer'].todos));
-    this.lastUpdate = this.store.pipe(select(state => state['todoReducer'].lastUpdate));
+    this.todos = this.store.pipe(select(todos));
+    this.lastUpdate = this.store.pipe(select(lastUpdate));
   }
 
   onSubmit() {

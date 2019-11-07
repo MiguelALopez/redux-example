@@ -24,7 +24,7 @@ import { TodoListComponent } from './todo-list/todo-list.component';
   imports: [
     BrowserModule,
     AppRoutingModule,
-    StoreModule.forRoot({ countReducer: counterReducer,  todoReducer: todoReducer} ),
+    StoreModule.forRoot({ countState: counterReducer,  todoState: todoReducer} ),
     FormsModule
   ],
   providers: [],

@@ -2,20 +2,14 @@ import { createReducer, on, createSelector } from "@ngrx/store";
 import { addTodo, toggleTodo, removeTodo, removeAllTodos } from "./counter.actions";
 import { ITodo } from './todo';
 
-export interface IAppState {
+export interface ITodoState {
     todos: ITodo[];
     lastUpdate: Date;
 }
 
-export const todosSelector = (state: IAppState) => state.todos;
-export const lastUpdateSelector = (state: IAppState) => state.lastUpdate;
-
-// export const selectTodos = createSelector(todosSelector, lastUpdateSelector);
-
-
-export const initialState: IAppState = {
+export const initialState: ITodoState = {
     todos: [{
-        description: '',
+        description: 'nothing to do',
         id: 1,
         isCompleted: false,
         priority: 'low',
@@ -60,6 +54,6 @@ const _todoReducer = createReducer(initialState,
     })
 );
 
-export function todoReducer(state: IAppState, action) {
+export function todoReducer(state: ITodoState, action): ITodoState {
     return _todoReducer(state, action);
 }

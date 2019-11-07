@@ -12,8 +12,8 @@ export class MyCounterComponent implements OnInit {
 
   count$: Observable<number>;
 
-  constructor(private store: Store<{count: number}>) {
-    this.count$ = store.pipe(select('countReducer'));
+  constructor(private store: Store<{countState: number}>) {
+    this.count$ = store.pipe(select(state => state['countState']));
   }
 
   ngOnInit() {

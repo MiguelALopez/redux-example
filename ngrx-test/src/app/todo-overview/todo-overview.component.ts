@@ -2,8 +2,9 @@ import { Component, OnInit } from '@angular/core';
 import { Observable } from 'rxjs';
 import { ITodo } from '../todo';
 import { Store, select } from '@ngrx/store';
-import { IAppState, todosSelector } from '../todo.reducer';
+import { ITodoState } from '../todo.reducer';
 import { removeAllTodos } from "../counter.actions";
+import { todos, lastUpdate } from '../todo.selector';
 
 @Component({
   selector: 'app-todo-overview',
@@ -15,12 +16,12 @@ export class TodoOverviewComponent implements OnInit {
   todos: Observable<ITodo[]>;
   lastUpdate: Observable<Date>;
 
-  constructor(private store: Store<{todoReducer: IAppState}>) {
+  constructor(private store: Store<{todoState: ITodoState}>) {
    }
 
   ngOnInit() {
-    this.todos = this.store.pipe(select(state => state['todoReducer'].todos));
-    this.lastUpdate = this.store.pipe(select(state => state['todoReducer'].lastUpdate));
+    this.todos = this.store.pipe(select(todos));
+    this.lastUpdate = this.store.pipe(select(lastUpdate));
     this.todos.subscribe(t => {
       console.log('estos son los todos:', t);
     });
